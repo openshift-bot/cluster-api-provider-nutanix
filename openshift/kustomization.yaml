@@ -7,6 +7,14 @@ components:
 resources:
 - ../config/default
 
+patches:
+- path: manager_run_as_non_root_patch.yaml
+  target:
+    group: apps
+    version: v1
+    kind: Deployment
+    name: capx-controller-manager
+
 images:
 - name: ghcr.io/nutanix-cloud-native/cluster-api-provider-nutanix/controller
   newName: registry.ci.openshift.org/openshift

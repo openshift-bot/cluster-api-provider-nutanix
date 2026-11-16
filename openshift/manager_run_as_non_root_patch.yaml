@@ -1,0 +1,25 @@
+# The OpenShift manager image (openshift/Dockerfile.openshift) is built on
+# base-rhel9 with no USER, so it defaults to root. The pod sets
+# runAsNonRoot: true and pins openshift.io/required-scc: restricted-v2.
+#
+# In the openshift-cluster-api namespace the SCC does NOT inject a runAsUser
+# for this pod, so without an explicit UID the kubelet rejects the container
+# with "container has runAsNonRoot and image will run as root"
+# (CreateContainerConfigError), which blocks the cluster-api ClusterOperator.
+#
+# Set an explicit non-root identity, matching the core capi-controller-manager
+# pod, which runs with required-scc: restricted-v2 and runAsUser/runAsGroup
+# 65532 in this same namespace. 65532 also matches the nonroot user used by the
+# upstream distroless image (package/docker/Dockerfile).
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: capx-controller-manager
+spec:
+  template:
+    spec:
+      containers:
+      - name: manager
+        securityContext:
+          runAsUser: 65532
+          runAsGroup: 65532
