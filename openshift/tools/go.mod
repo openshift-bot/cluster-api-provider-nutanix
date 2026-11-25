@@ -2,7 +2,7 @@ module github.com/nutanix-cloud-native/cluster-api-provider-nutanix/openshift/to
 
 go 1.26.0
 
-require github.com/openshift/cluster-capi-operator/manifests-gen v0.0.0-20261109120155-a5c02013971e
+require github.com/openshift/cluster-capi-operator/manifests-gen v0.0.0-20261120102950-123ae75da06c
 
 require (
 	github.com/blang/semver/v4 v4.0.0 // indirect
@@ -36,7 +36,7 @@ require (
 	github.com/monochromegane/go-gitignore v0.0.0-20200626010858-205db1a8cc00 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/opencontainers/go-digest v1.0.0 // indirect
-	github.com/openshift/api v0.0.0-20261028095540-9af1f7b4730c // indirect
+	github.com/openshift/api v0.0.0-20261117044008-410efb4bfbac // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
 	github.com/xlab/treeprint v1.2.0 // indirect
