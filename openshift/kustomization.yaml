@@ -14,6 +14,21 @@ patches:
     version: v1
     kind: Deployment
     name: capx-controller-manager
+- target:
+    group: apps
+    version: v1
+    kind: Deployment
+    name: capx-controller-manager
+  patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/args/-
+      value: "--tls-min-version=${TLS_MIN_VERSION}"
+    - op: add
+      path: /spec/template/spec/containers/0/args/-
+      value: "--tls-cipher-suites=${TLS_CIPHER_SUITES}"
+    - op: add
+      path: /spec/template/spec/containers/0/args/-
+      value: "--tls-curve-preferences=${TLS_CURVE_PREFERENCES}"
 
 images:
 - name: ghcr.io/nutanix-cloud-native/cluster-api-provider-nutanix/controller
